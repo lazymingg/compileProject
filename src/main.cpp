@@ -374,7 +374,7 @@ int main(void)
                     isPlayerInMatch = false;
                     currentScreen = SCORE;
                 }
-                else if (isMatching == true)
+                if (isMatching == true)
                 {
                     // if they matching get them bonus time 
                     startGameTime += timeUp;
@@ -396,6 +396,7 @@ int main(void)
                                 saveScore(playerNormalScore, currentLevel, scoree);
                             else
                                 saveScore(playerSpecialScore, currentLevel, scoree);
+                                
                             //update player level if they win
                             if (currentLevel == maxNormalLevel && currentLevel < 6 && normalMode == true)
                             { 
@@ -412,7 +413,7 @@ int main(void)
                             // player not in match anymore turn to score menu
                             isPlayerInMatch = false;
                             currentScreen = SCORE;
-                            break;
+                            // break;
                         }
                         else if (normalMode == true)
                         {
@@ -530,6 +531,7 @@ int main(void)
         }
         //this is the second switch case to drawing all the game screen 
         BeginDrawing();
+
         ClearBackground(backGround);
         // resize the back ground to draw it
         Rectangle sourceRec = { 0, 0, texBackgroundAnim.width, texBackgroundAnim.height };
