@@ -12,7 +12,7 @@ const int screenHeight = 686, screenWidth = 1024;
 */
 void drawLogin(bool &keyPressed, int &playerSelection, string &userName)
 {
-    // define text for draw
+    // defIne text for draw
     const char *title = "Pikachu The Matching Game :D";
     const char *title2 = "Press Enter to login :D";
     const char *option1 ="User Name : ";
@@ -72,12 +72,12 @@ void drawLogin(bool &keyPressed, int &playerSelection, string &userName)
     maxSpecialMode scorelevel1 scorelevel2 scorelevel3 scorelevel4 scorelevel5 scorelevel6
     this funtion aim to read the normalMode data
 */
-int* readNormalData(const string filePath, string userName, int& size)
+int* readNormalData(string filePath, string userName, int& size)
 {
-    ifstream fin(filePath);
+    ifstream fin(filePath.c_str());
     if (!fin.is_open()) 
     {
-        cerr << "cannot open the file" << std::endl;
+        cout << "cannot open the file." << std::endl;
         return NULL;
     }
 
@@ -87,14 +87,12 @@ int* readNormalData(const string filePath, string userName, int& size)
     {
         if (temp == userName)
         {
-            // Read size of normal mode data
+            //read size of normal mode data
             fin >> size;
-            fin.ignore(); // Ignore the newline character
+            fin.ignore(); //ignore 
 
-            // Allocate memory for normalData array
             normalData = new int[size];
 
-            // Read normal mode data
             for (int i = 0; i < size; i++)
             {
                 fin >> normalData[i];
@@ -104,7 +102,7 @@ int* readNormalData(const string filePath, string userName, int& size)
         }
     }
 
-    cerr << "cannot find normal data for user" << std::endl;
+    cout << "cannot find normal data for user." << std::endl;
     return NULL;
 }
 /*
@@ -119,7 +117,7 @@ int* readSpecialData(string filePath, string userName, int& size)
     ifstream fin(filePath);
     if (!fin.is_open()) 
     {
-        cerr << "cannot open the file" << std::endl;
+        cout << "cannot open the file" << endl;
         return NULL;
     }
 
@@ -129,7 +127,7 @@ int* readSpecialData(string filePath, string userName, int& size)
     {
         if (temp == userName)
         {
-            //skip one line
+            // Read and discard the line containing maxNormalMode data
             getline(fin, temp);
 
             // Read size of special mode data
@@ -149,7 +147,7 @@ int* readSpecialData(string filePath, string userName, int& size)
         }
     }
 
-    cerr << "cannot find special data for user" << endl;
+    cout << "cannot find special data for user" << endl;
     return NULL;
 }
 /*
@@ -239,7 +237,7 @@ void checkAndCreateUser(string filePath, string userName)
 
     if (!fIn.is_open()) 
     {
-        cout << "Không thể mở tệp tin!" << endl;
+        cout << "canot openfile" << endl;
         return;
     }
 
